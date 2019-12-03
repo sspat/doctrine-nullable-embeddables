@@ -217,4 +217,4 @@ If you choose this path, you can install this package in the following steps:
     }
 }
 ```
-- run `composer require sspat/doctrine-nullable-embeddables`
+- run `composer require sspat/doctrine-nullable-embeddables doctrine/orm`
