@@ -18,7 +18,7 @@
     "extra": {
         "patches": {
             "doctrine/orm": {
-                "Allow nullable embeddables": "patch/nullable_embeddables.patch"
+                "Allow nullable embeddables": "./patch/nullable_embeddables.patch"
             }
         }
     },

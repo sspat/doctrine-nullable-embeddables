@@ -208,4 +208,13 @@ class ValueObject
 }
 ```
 
-If you choose this path, all you need to do is `composer require sspat/doctrine-nullable-embeddables`
+If you choose this path, you can install this package in the following steps: 
+- add to your composer.json:
+```json
+{
+    "extra": {
+        "enable-patching": true
+    }
+}
+```
+- run `composer require sspat/doctrine-nullable-embeddables`
