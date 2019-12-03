@@ -1,0 +1,32 @@
+{
+    "name": "sspat/doctrine-nullable-embeddables",
+    "description": "Patches doctrine/orm to allow usage of nullable embeddables",
+    "type": "library",
+    "version": "2.7",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Patrik Foldes",
+            "email": "studio22@mail.ru"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "cweagans/composer-patches": "^1.6",
+        "doctrine/orm": "2.7"
+    },
+    "extra": {
+        "patches": {
+            "doctrine/orm": {
+                "Allow nullable embeddables": "patch/nullable_embeddables.patch"
+            }
+        }
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist",
+            "doctrine/orm": "source"
+        },
+        "sort-packages": true
+    }
+}
