@@ -4,6 +4,11 @@
     "type": "library",
     "version": "2.7",
     "license": "MIT",
+    "keywords": [
+        "doctrine",
+        "nullable",
+        "embeddable"
+    ],
     "authors": [
         {
             "name": "Patrik Foldes",
@@ -18,7 +23,7 @@
     "extra": {
         "patches": {
             "doctrine/orm": {
-                "Allow nullable embeddables": "./patch/nullable_embeddables.patch"
+                "Allow nullable embeddables": "https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/3dd4222fe52968955eec7bb5956cc8164b489c44/patch/nullable_embeddables.patch"
             }
         }
     },
