@@ -151,7 +151,7 @@ and keeping up with the upstream changes.
 
 **Override specific Doctrine classes with your own**
 
-This is pretty much what this package is doing.
+This is what this package is doing.
 
 It will install doctrine/orm of a specific version. The version is always the same 
 as of this package and is locked by it, so if you want to update Doctrine you
@@ -217,4 +217,4 @@ If you choose this path, you can install this package in the following steps:
     }
 }
 ```
-- run `composer require sspat/doctrine-nullable-embeddables doctrine/orm`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.0-dev doctrine/orm`

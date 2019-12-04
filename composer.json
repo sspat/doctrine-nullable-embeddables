@@ -20,10 +20,20 @@
         "cweagans/composer-patches": "^1.6",
         "doctrine/orm": "2.7"
     },
+    "require-dev": {
+        "doctrine/coding-standard": "^6.0",
+        "phpunit/phpunit": "^8.4"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DoctrineNullableEmbeddables\\Tests\\": "tests/",
+            "Doctrine\\Tests\\": "vendor/doctrine/orm/tests/Doctrine/Tests"
+        }
+    },
     "extra": {
         "patches": {
             "doctrine/orm": {
-                "Allow nullable embeddables": "https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/3dd4222fe52968955eec7bb5956cc8164b489c44/patch/nullable_embeddables.patch"
+                "Allow nullable embeddables": "patch/nullable_embeddables.patch"
             }
         }
     },
