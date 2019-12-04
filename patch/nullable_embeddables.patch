@@ -1,13 +1,16 @@
 diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index b224fff4e..67d5e1da4 100644
+index b224fff4e..13404d91a 100644
 --- a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-@@ -72,13 +72,13 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -72,13 +72,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
       */
      public function getValue($object = null)
      {
 -        $embeddedObject = $this->parentProperty->getValue($object);
-+        $embeddedObject = $this->parentProperty->isInitialized($object) ? $this->parentProperty->getValue($object) : null;
++        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
++            $this->parentProperty->isInitialized($object) ?
++            $this->parentProperty->getValue($object) :
++            null;
  
          if (null === $embeddedObject) {
              return null;
@@ -18,7 +21,7 @@ index b224fff4e..67d5e1da4 100644
      }
  
      /**
-@@ -86,7 +86,18 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -86,7 +89,21 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
       */
      public function setValue($object, $value = null)
      {
@@ -34,7 +37,10 @@ index b224fff4e..67d5e1da4 100644
 +            return;
 +        }
 +
-+        $embeddedObject = $this->parentProperty->isInitialized($object) ? $this->parentProperty->getValue($object) : null;
++        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
++            $this->parentProperty->isInitialized($object) ?
++            $this->parentProperty->getValue($object) :
++            null;
  
          if (null === $embeddedObject) {
              $this->instantiator = $this->instantiator ?: new Instantiator();

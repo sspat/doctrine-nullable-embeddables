@@ -164,6 +164,13 @@ using https://github.com/cweagans/composer-patches.
 
 You can review the contents of this patch in `patch/nullable_embeddables.patch`
 
+It works by analyzing the types of the properties of the entity and the value-object.
+If the entity property containing the value-object is declared as nullable and
+none of the value-object's properties that are not declared nullable get null values from the
+database - then the entity property will be hydrated with the value object.
+All other cases are considered an invalid state based on the provided typing and will result in
+hydrating to null on the corresponding property of the entity.
+
 The tradeoffs of this approach will be:
 - You can't update Doctrine directly, only update it with this package
 - You will need PHP 7.4
