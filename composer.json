@@ -33,7 +33,7 @@
     "extra": {
         "patches": {
             "doctrine/orm": {
-                "Allow nullable embeddables": "patch/nullable_embeddables.patch"
+                "Allow nullable embeddables": "https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/v2.7.0/patch/nullable_embeddables.patch"
             }
         }
     },
