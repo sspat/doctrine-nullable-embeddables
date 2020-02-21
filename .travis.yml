@@ -3,7 +3,7 @@ sudo: false
 language: php
 
 php:
-  - 7.4snapshot
+  - 7.4
 
 before_install:
   - composer self-update
@@ -11,16 +11,10 @@ before_install:
 jobs:
   include:
     - stage: Test
-      php: 7.4snapshot
+      php: 7.4
       install: travis_retry composer install --prefer-dist
       script:
         - ./vendor/bin/phpunit
-
-    - stage: Code Style
-      php: 7.4snapshot
-      install: travis_retry composer install --prefer-dist
-      script:
-        - vendor/bin/phpcs
 
 cache:
   directories:

@@ -2,7 +2,6 @@
     "name": "sspat/doctrine-nullable-embeddables",
     "description": "Patches doctrine/orm to allow usage of nullable embeddables",
     "type": "library",
-    "version": "2.7",
     "license": "MIT",
     "keywords": [
         "doctrine",
@@ -18,11 +17,10 @@
     "require": {
         "php": "^7.4",
         "cweagans/composer-patches": "^1.6",
-        "doctrine/orm": "2.7"
+        "doctrine/orm": "2.7.1"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^6.0",
-        "phpunit/phpunit": "^8.4"
+        "phpunit/phpunit": "^7.5"
     },
     "autoload-dev": {
         "psr-4": {
