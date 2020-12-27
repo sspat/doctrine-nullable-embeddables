@@ -231,3 +231,4 @@ Then depending on the version of doctrine/orm you want to use:
 - run `composer require sspat/doctrine-nullable-embeddables:v2.7.2.x-dev doctrine/orm`
 - run `composer require sspat/doctrine-nullable-embeddables:v2.7.3.x-dev doctrine/orm`
 - run `composer require sspat/doctrine-nullable-embeddables:v2.7.4.x-dev doctrine/orm`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.5.x-dev doctrine/orm`
