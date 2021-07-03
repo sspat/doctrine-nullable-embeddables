@@ -1,31 +1,29 @@
 diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index b224fff4e..13404d91a 100644
+index 49a2ab2..9ad1b79 100644
 --- a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-@@ -72,13 +72,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -63,13 +63,15 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
       */
      public function getValue($object = null)
      {
 -        $embeddedObject = $this->parentProperty->getValue($object);
-+        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+            $this->parentProperty->isInitialized($object) ?
++        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) || $this->parentProperty->isInitialized($object) ?
 +            $this->parentProperty->getValue($object) :
 +            null;
- 
-         if (null === $embeddedObject) {
+
+         if ($embeddedObject === null) {
              return null;
          }
- 
+
 -        return $this->childProperty->getValue($embeddedObject);
 +        return $this->childProperty->isInitialized($embeddedObject) ? $this->childProperty->getValue($embeddedObject) : null;
      }
- 
+
      /**
-@@ -86,7 +89,21 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -77,8 +79,23 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
       */
      public function setValue($object, $value = null)
      {
--        $embeddedObject = $this->parentProperty->getValue($object);
 +        if ($value === null &&
 +            $this->parentProperty->hasType() &&
 +            $this->childProperty->hasType() &&
@@ -37,10 +35,11 @@ index b224fff4e..13404d91a 100644
 +            return;
 +        }
 +
-+        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+            $this->parentProperty->isInitialized($object) ?
+         $embeddedObject = $this->parentProperty->getValue($object);
+
++        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) || $this->parentProperty->isInitialized($object) ?
 +            $this->parentProperty->getValue($object) :
 +            null;
- 
-         if (null === $embeddedObject) {
++
+         if ($embeddedObject === null) {
              $this->instantiator = $this->instantiator ?: new Instantiator();
