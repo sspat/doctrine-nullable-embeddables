@@ -17,7 +17,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "cweagans/composer-patches": "^1.6|^1.7",
-        "doctrine/orm": "2.8.2"
+        "doctrine/orm": "2.8.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
@@ -31,16 +31,19 @@
     "extra": {
         "patches": {
             "doctrine/orm": {
-                "Allow nullable embeddables": "https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/v2.8.2/patch/nullable_embeddables.patch"
+                "Allow nullable embeddables": "https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/v2.8.3/patch/nullable_embeddables.patch"
             }
         }
     },
     "config": {
         "preferred-install": {
-            "*": "dist",
-            "doctrine/orm": "source"
+            "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "cweagans/composer-patches": true
+        }
     },
     "scripts": {
         "test": "phpunit"
