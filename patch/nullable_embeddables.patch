@@ -1,9 +1,9 @@
 diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index 49a2ab2..8f3d6f7 100644
+index d08be94..47bc91d 100644
 --- a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-@@ -63,13 +63,15 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
-      */
+@@ -65,13 +65,15 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+     #[ReturnTypeWillChange]
      public function getValue($object = null)
      {
 -        $embeddedObject = $this->parentProperty->getValue($object);
@@ -20,8 +20,8 @@ index 49a2ab2..8f3d6f7 100644
      }
 
      /**
-@@ -77,7 +79,20 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
-      */
+@@ -80,7 +82,20 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+     #[ReturnTypeWillChange]
      public function setValue($object, $value = null)
      {
 -        $embeddedObject = $this->parentProperty->getValue($object);
