@@ -6,10 +6,10 @@ namespace DoctrineNullableEmbeddables\Tests;
 
 use Doctrine\Instantiator\Instantiator;
 use Doctrine\ORM\Mapping\ReflectionEmbeddedProperty;
-use Doctrine\Tests\Models\Generic\BooleanModel;
-use Doctrine\Tests\Models\Reflection\AbstractEmbeddable;
-use Doctrine\Tests\Models\Reflection\ArrayObjectExtendingClass;
-use Doctrine\Tests\Models\Reflection\ConcreteEmbeddable;
+use DoctrineNullableEmbeddables\Tests\Models\Generic\BooleanModel;
+use DoctrineNullableEmbeddables\Tests\Models\Reflection\AbstractEmbeddable;
+use DoctrineNullableEmbeddables\Tests\Models\Reflection\ArrayObjectExtendingClass;
+use DoctrineNullableEmbeddables\Tests\Models\Reflection\ConcreteEmbeddable;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
