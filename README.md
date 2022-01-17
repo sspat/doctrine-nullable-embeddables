@@ -226,14 +226,15 @@ If you choose this path, you can install this package in the following steps:
 ```
 Then depending on the version of doctrine/orm you want to use:
 
-- run `composer require sspat/doctrine-nullable-embeddables:v2.8.4 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.8.3 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.8.2 doctrine/orm` 
-- run `composer require sspat/doctrine-nullable-embeddables:v2.8.1 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.8.0 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.5 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.4 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.3 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.2 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.1 doctrine/orm`
-- run `composer require sspat/doctrine-nullable-embeddables:v2.7.0 doctrine/orm`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.5 doctrine/orm:2.8.5`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.4 doctrine/orm:2.8.4`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.3 doctrine/orm:2.8.3`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.2 doctrine/orm:2.8.2` 
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.1 doctrine/orm:2.8.1`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.8.0 doctrine/orm:2.8.0`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.5 doctrine/orm:2.7.5`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.4 doctrine/orm:2.7.4`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.3 doctrine/orm:2.7.3`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.2 doctrine/orm:2.7.2`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.1 doctrine/orm:2.7.1`
+- run `composer require sspat/doctrine-nullable-embeddables:v2.7.0 doctrine/orm:2.7.0`
