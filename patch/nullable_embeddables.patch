@@ -1,5 +1,5 @@
 diff --git a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index 563a699..3e2020d 100644
+index db4c1f8..c830e7d 100644
 --- a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 @@ -49,13 +49,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
