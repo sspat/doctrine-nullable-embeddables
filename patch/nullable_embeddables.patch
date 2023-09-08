@@ -1,14 +1,13 @@
 diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index 9e6a4a2..f39b81b 100644
 --- a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-@@ -51,13 +51,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -49,13 +49,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
      #[ReturnTypeWillChange]
      public function getValue($object = null)
      {
 -        $embeddedObject = $this->parentProperty->getValue($object);
 +        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+        $this->parentProperty->isInitialized($object) ?
++            $this->parentProperty->isInitialized($object) ?
 +            $this->parentProperty->getValue($object) :
 +            null;
 
@@ -21,7 +20,7 @@ index 9e6a4a2..f39b81b 100644
      }
 
      /**
-@@ -68,7 +71,21 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -66,7 +69,20 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
      #[ReturnTypeWillChange]
      public function setValue($object, $value = null)
      {
@@ -32,13 +31,13 @@ index 9e6a4a2..f39b81b 100644
 +            $this->parentProperty->getType()->allowsNull() &&
 +            ! $this->childProperty->getType()->allowsNull()
 +        ) {
-+            $this->parentProperty->setValue($object, null);
++            $this->parentProperty->setValue($object);
 +
 +            return;
 +        }
 +
 +        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+        $this->parentProperty->isInitialized($object) ?
++            $this->parentProperty->isInitialized($object) ?
 +            $this->parentProperty->getValue($object) :
 +            null;
 
