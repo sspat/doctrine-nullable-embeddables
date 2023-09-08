@@ -1,5 +1,5 @@
 diff --git a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-index 563a699..377b6b3 100644
+index 563a699..3e2020d 100644
 --- a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 +++ b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 @@ -49,13 +49,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
@@ -32,7 +32,7 @@ index 563a699..377b6b3 100644
 +            $this->parentProperty->getType()->allowsNull() &&
 +            ! $this->childProperty->getType()->allowsNull()
 +        ) {
-+            $this->parentProperty->setValue($object);
++            $this->parentProperty->setValue($object, null);
 +
 +            return;
 +        }
