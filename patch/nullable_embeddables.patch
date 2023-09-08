@@ -1,6 +1,7 @@
-diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
---- a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
-+++ b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
+diff --git a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
+index 563a699..377b6b3 100644
+--- a/a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
++++ b/b/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php
 @@ -49,13 +49,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
      #[ReturnTypeWillChange]
      public function getValue($object = null)
@@ -20,7 +21,7 @@ diff --git a/lib/Doctrine/ORM/Mapping/ReflectionEmbeddedProperty.php b/lib/Doctr
      }
 
      /**
-@@ -66,7 +69,20 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
+@@ -66,7 +69,21 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
      #[ReturnTypeWillChange]
      public function setValue($object, $value = null)
      {
