@@ -1,46 +1,20 @@
-diff --git a/a/src/Mapping/ReflectionEmbeddedProperty.php b/b/src/Mapping/ReflectionEmbeddedProperty.php
-index db4c1f8..c830e7d 100644
---- a/a/src/Mapping/ReflectionEmbeddedProperty.php
-+++ b/b/src/Mapping/ReflectionEmbeddedProperty.php
-@@ -49,13 +49,16 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
-     #[ReturnTypeWillChange]
-     public function getValue($object = null)
+diff --git a/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php b/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
+--- a/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
++++ b/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
+@@ -22,6 +22,16 @@
+ 
+     public function setValue(object $object, mixed $value): void
      {
--        $embeddedObject = $this->parentProperty->getValue($object);
-+        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+            $this->parentProperty->isInitialized($object) ?
-+            $this->parentProperty->getValue($object) :
-+            null;
-
-         if ($embeddedObject === null) {
-             return null;
-         }
-
--        return $this->childProperty->getValue($embeddedObject);
-+        return $this->childProperty->isInitialized($embeddedObject) ? $this->childProperty->getValue($embeddedObject) : null;
-     }
-
-     /**
-@@ -66,7 +69,21 @@ class ReflectionEmbeddedProperty extends ReflectionProperty
-     #[ReturnTypeWillChange]
-     public function setValue($object, $value = null)
-     {
--        $embeddedObject = $this->parentProperty->getValue($object);
-+        if ($value === null &&
-+            $this->parentProperty->hasType() &&
-+            $this->childProperty->hasType() &&
-+            $this->parentProperty->getType()->allowsNull() &&
-+            ! $this->childProperty->getType()->allowsNull()
-+        ) {
-+            $this->parentProperty->setValue($object, null);
++        if ($value === null) {
++            $parentReflector = $this->parent->getUnderlyingReflector();
 +
-+            return;
++            if ($parentReflector->hasType() && $parentReflector->getType()->allowsNull()) {
++                $this->parent->setValue($object, null);
++
++                return;
++            }
 +        }
 +
-+        $embeddedObject = ! $this->parentProperty->getDeclaringClass()->isInstance($object) ||
-+            $this->parentProperty->isInitialized($object) ?
-+            $this->parentProperty->getValue($object) :
-+            null;
-
+         $embeddedObject = $this->parent->getValue($object);
+ 
          if ($embeddedObject === null) {
-             $this->instantiator = $this->instantiator ?: new Instantiator();
