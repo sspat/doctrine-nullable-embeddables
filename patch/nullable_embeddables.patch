@@ -1,14 +1,20 @@
 diff --git a/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php b/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
 --- a/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
 +++ b/src/Mapping/PropertyAccessors/EmbeddablePropertyAccessor.php
-@@ -22,6 +22,16 @@
+@@ -22,6 +22,22 @@
  
      public function setValue(object $object, mixed $value): void
      {
 +        if ($value === null) {
-+            $parentReflector = $this->parent->getUnderlyingReflector();
++            $parentType = $this->parent->getUnderlyingReflector()->getType();
++            $childType  = $this->child->getUnderlyingReflector()->getType();
 +
-+            if ($parentReflector->hasType() && $parentReflector->getType()->allowsNull()) {
++            if (
++                $parentType !== null
++                && $parentType->allowsNull()
++                && $childType !== null
++                && ! $childType->allowsNull()
++            ) {
 +                $this->parent->setValue($object, null);
 +
 +                return;

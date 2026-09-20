@@ -159,8 +159,15 @@ will need to update this package to the same version as the Doctrine version you
 This locking is needed to ensure that there are no changes to the files this package is
 patching.
 
-After installing doctrine/orm, a patch will be applyed to the Doctrine class `Doctrine/ORM/Mapping/ReflectionEmbeddedProperty`
-using https://github.com/cweagans/composer-patches.
+After installing doctrine/orm, a patch will be applyed to the Doctrine class
+`Doctrine/ORM/Mapping/PropertyAccessors/EmbeddablePropertyAccessor` (for doctrine/orm 3.4+; older
+versions patch `Doctrine/ORM/Mapping/ReflectionEmbeddedProperty`) using
+https://github.com/cweagans/composer-patches.
+
+The patch is referenced by an immutable, version-pinned URL
+(`https://raw.githubusercontent.com/sspat/doctrine-nullable-embeddables/<version>/patch/nullable_embeddables.patch`)
+so that it is resolved correctly both when this package is the root project and when it is
+installed as a dependency inside another application's `vendor` directory.
 
 You can review the contents of this patch in `patch/nullable_embeddables.patch`
 
@@ -173,10 +180,27 @@ hydrating to null on the corresponding property of the entity.
 
 The tradeoffs of this approach will be:
 - You can't update Doctrine directly, only update it with this package
-- You will need PHP 7.4
+- You will need PHP 8.1+
 - Your entities properties containing nullable value objects must be typed
 - Your entities properties containing nullable value objects must be nullable
 - Your nullable value objects properties must be typed
+
+## Known limitations
+
+The package makes the "is this embeddable absent?" decision per embedded field, based on the
+field types. It intentionally does **not** support the following scenarios, which are out of
+scope for this release:
+
+- **Nested embeddables** (an embeddable containing another embeddable).
+- **Embeddables with several required properties** where the database row is partial
+  (for example `country = NULL, city = 'Berlin'`). Because the decision is made per field as
+  Doctrine assigns them, the result for such inconsistent rows is dependent on the order in
+  which the fields are hydrated. This is a pre-existing limitation of the type-driven approach,
+  not a regression introduced by the Doctrine ORM 3.x port.
+
+Supported (and covered by tests): a nullable embeddable with a required child receiving `NULL`
+(clears the embeddable), and a valid embeddable whose optional (`?`) child receives `NULL`
+(the embeddable is preserved and the optional field is set to `null`).
 
 A working example would look like this:
 ```php
@@ -226,6 +250,7 @@ If you choose this path, you can install this package in the following steps:
 ```
 Then depending on the version of doctrine/orm you want to use:
 
+- run `composer require sspat/doctrine-nullable-embeddables:v3.7.1 doctrine/orm:3.7.1`
 - run `composer require sspat/doctrine-nullable-embeddables:v2.20.0 doctrine/orm:2.20.0`
 - run `composer require sspat/doctrine-nullable-embeddables:v2.19.8 doctrine/orm:2.19.8`
 - run `composer require sspat/doctrine-nullable-embeddables:v2.19.7 doctrine/orm:2.19.7`
